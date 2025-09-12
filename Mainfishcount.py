@@ -13,7 +13,7 @@ import cvzone
 
 # =================== Config ===================
 DROP_INTERVAL = float('inf') #90
-QUEUE_MAXSIZE = 3000
+QUEUE_MAXSIZE = 3000 # This value has to be fit for your machine. If you do not have powerful computer reduce if you have increase. IT was for RTX 5090 24 GB VRAM
 EXCEL_UPDATE_INTERVAL = 600  # seconds
 DISPLAY_WINDOW = "High-FPS Fish Counter (Video)"
 MODEL_PATH = "last1.engine"
