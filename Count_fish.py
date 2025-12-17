@@ -185,10 +185,12 @@ class FishCounter:
         cap = cv2.VideoCapture(self.video_path)
 
 
-        frame_width = cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-        frame_height = cap.set(cv2.CAP_PROP_FRAME_HEIGHT,720)
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+        frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        cap.set(cv2.CAP_PROP_FPS,60)
+        cap.set(cv2.CAP_PROP_FPS, 60)
         fps = cap.get(cv2.CAP_PROP_FPS)
 
         
@@ -204,9 +206,9 @@ class FishCounter:
         
         print(f"Recording at {fps} FPS")
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        out = cv2.VideoWriter(self.output_path, fourcc, fps, (1280,720)) #For 60 fps this should be ideal otherwise we will not get at 60.
-        
-        out1 = cv2.VideoWriter(self.output_path1, fourcc, fps, (1280,720)) #(frame_width, frame_height)) #This is for raw footage too look it out.
+        out = cv2.VideoWriter(self.output_path, fourcc, fps, (frame_width, frame_height))
+
+        out1 = cv2.VideoWriter(self.output_path1, fourcc, fps, (frame_width, frame_height))  # Raw footage
         while cap.isOpened():
             ret, frame = cap.read()
             if not ret:
