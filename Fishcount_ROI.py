@@ -175,15 +175,17 @@ class FishCounter:
         
         '''frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))''' # use these if you counting from saved footage but if you want to get maximum quality and FPS use below and change resolution and fps as you want
-        frame_width = int(cap.set(cv2.CAP_PROP_FRAME_WIDTH,1280))
-        frame_height = int(cap.set(cv2.CAP_PROP_FRAME_HEIGHT,720))
-        
-        cap.set(cv2.CAP_PROP_FPS,60)
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+        frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+        cap.set(cv2.CAP_PROP_FPS, 60)
         fps = cap.get(cv2.CAP_PROP_FPS)
         print(f"recprd_at {fps} FPS")
          
 
-        out = cv2.VideoWriter(self.output_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (1280,720))#(frame_width, frame_height))
+        out = cv2.VideoWriter(self.output_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (frame_width, frame_height))
 
         while cap.isOpened():
             ret, frame = cap.read()
