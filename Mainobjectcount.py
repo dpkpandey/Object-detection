@@ -15,15 +15,14 @@ import cvzone
 DROP_INTERVAL = float('inf') #90
 QUEUE_MAXSIZE = 3000 # This value has to be fit for your machine. If you do not have powerful computer reduce if you have increase. IT was for RTX 5090 24 GB VRAM
 EXCEL_UPDATE_INTERVAL = 600  # seconds
-DISPLAY_WINDOW = "High-FPS Fish Counter (Video)"
+DISPLAY_WINDOW = "High-FPS Object Counter (Video)"
 MODEL_PATH = "last1.engine"
 VIDEO_PATH = "rt.avi"
 DEFAULT_LINE = [440, 300, 920, 300]
-CLASS_LIST = ['fish']
 
 start_time = time.time()
 
-class SingleCamFishCounter:
+class SingleCamObjectCounter:
     def __init__(self, model_path, video_source, line=None, footage_recorder=None):
         self.model = YOLO(model_path)
         self.video_source = video_source
@@ -157,9 +156,9 @@ class SingleCamFishCounter:
                 cvzone.putTextRect(frame, f'{track_id}', [x1 + 8, y1 - 12],
                                    colorR=(0, 0, 255), thickness=2, scale=1.5)
 
-            cvzone.putTextRect(frame, f'Detected fish No = {self.object_count}', [80, 34],
+            cvzone.putTextRect(frame, f'Detected object No = {self.object_count}', [80, 34],
                                colorR=(0, 0, 255), thickness=4, scale=2.3, border=3)
-            cvzone.putTextRect(frame, f'MY FISH COUNTER', [1040, 700],
+            cvzone.putTextRect(frame, f'MY OBJECT COUNTER', [1040, 700],
                                colorR=(255, 0, 100), thickness=2, scale=1.3, border=1)
 
             resized = cv2.resize(frame, (640, 480))
@@ -180,7 +179,7 @@ class SingleCamFishCounter:
             if time.time() - self.last_log_time > 5:
                 total_elapsed = time.time() - start_time
                 fps = processed_frames / total_elapsed if total_elapsed > 0 else 0
-                print(f"[INFO] Fish count: {self.object_count}, Frames: {processed_frames}, FPS: {fps:.2f}")
+                print(f"[INFO] Object count: {self.object_count}, Frames: {processed_frames}, FPS: {fps:.2f}")
                 self.last_log_time = time.time()
 
         # Release internal writers if they exist
@@ -198,7 +197,7 @@ class SingleCamFishCounter:
                 x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
                 conf = box.conf[0].cpu().item()
                 class_id = int(box.cls[0].cpu().item())
-                if CLASS_LIST[class_id] == 'fish' and conf > 0.25:
+                if conf > 0.25:
                     detections = np.vstack((detections, [x1, y1, x2, y2, conf]))
 
         tracks = self.tracker.update(detections)
@@ -213,7 +212,7 @@ class SingleCamFishCounter:
         return detections, tracks, crossing
 
     def update_excel(self):
-        filename = 'fish_count_log_video.xlsx'
+        filename = 'object_count_log_video.xlsx'
         backup = filename.replace('.xlsx', '_backup.xlsx')
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -224,7 +223,7 @@ class SingleCamFishCounter:
             else:
                 wb = Workbook()
                 ws = wb.active
-                ws.append(["Timestamp", "Fish Count"])
+                ws.append(["Timestamp", "Object Count"])
             ws.append([timestamp, len(self.counter)])
             wb.save(filename)
         except PermissionError:
@@ -308,14 +307,14 @@ class SingleCamFishCounter:
         total_time = time.time() - start_time
         fps = self.processed_frames / total_time if total_time > 0 else 0
 
-        print("\n=== Final Fish Count Summary ===")
-        print(f"Total detected fish: {len(self.counter)}")
+        print("\n=== Final Object Count Summary ===")
+        print(f"Total detected object: {len(self.counter)}")
         print(f"Total time: {time.time() - start_time:.2f} seconds")
-        print(f"[INFO] Fish Count : {self.object_count}, Frames: {self.processed_frames}, FPS :{fps:.2f}")
+        print(f"[INFO] Object Count : {self.object_count}, Frames: {self.processed_frames}, FPS :{fps:.2f}")
 
 # Main (kept for standalone tests; your GUI can import the class and call set_imshow)
 if __name__ == "__main__":
-    counter = SingleCamFishCounter(MODEL_PATH, VIDEO_PATH)
+    counter = SingleCamObjectCounter(MODEL_PATH, VIDEO_PATH)
     # Example: disable on-screen preview (GUI will normally call this)
     # counter.set_imshow(False)
     counter.run()

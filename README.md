@@ -18,16 +18,16 @@ Create a new folder for your project. Example:
 
 - **Windows**:
   ```bash
-  cd Desktop\fishdetect
+  cd Desktop\Objectdetection
   ```
 - **Linux**:
   ```bash
-  cd Desktop/fishdetect
+  cd Desktop/Objectdetection
   ```
 or else you can directly clone this repo to your computer 
 ```bash
-git clone https://github.com/dpkpandey/fishdetect
-cd fishdetect
+git clone https://github.com/dpkpandey/Objectdetection
+cd Objectdetection
 ```
 Then folow follow step 3 and 4 and do 
 ```bash
@@ -82,16 +82,16 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 2. Upload and annotate images.
 3. Download the dataset and organize files:
    - Place images in the `images` folder.
-   - Place annotation `.txt` files in the `labels` folder inside your `fishdetect` directory.
+   - Place annotation `.txt` files in the `labels` folder inside your `Objectdetection` directory.
 
 ## 7. Create YAML Configuration File
-Create `fishdetect.yaml` to define the dataset path and classes:
+Create `Objectdetection.yaml` to define the dataset path and classes:
 ```yaml
-path: C:\Users\YourComputer\Desktop\fishdetect  #This is path of your current directory you can do pwd to see location and can copy that
+path: C:\Users\YourComputer\Desktop\Objectdetection  #This is path of your current directory you can do pwd to see location and can copy that
 train: images
 val: images
 names:
-  0: fish
+  0: object
 ```
  
 ### For multiple classes (e.g., algae detection):  $\textcolor{red}{You}$ $\textcolor{red}{can}$ $\textcolor{red}{skip}$ $\textcolor{red}{this}$ $\textcolor{red}{one}$  $\textcolor{red}{here,}$ $\textcolor{red}{this}$ $\textcolor{red}{is}$ $\textcolor{red}{just}$ $\textcolor{red}{an}$  $\textcolor{red}{example}$ $\textcolor{red}{of}$ $\textcolor{red}{how}$ $\textcolor{red}{to}$ $\textcolor{red}{use}$  $\textcolor{red}{multiple}$ $\textcolor{red}{classes}$
@@ -115,7 +115,7 @@ model = YOLO("yolo11m.yaml").load("yolo11m.pt")  # Train from scratch
 # model = YOLO("yolo11m.pt")  # Load pre-trained model (recommended)
 
 # Train the model
-results = model.train(data="fishdetect.yaml", batch=8, epochs=500)
+results = model.train(data="Objectdetection.yaml", batch=8, epochs=500)
 ```
 - Adjust batch size according to your GPU memory.
 - Run the script:
@@ -124,8 +124,8 @@ results = model.train(data="fishdetect.yaml", batch=8, epochs=500)
   ```
 
 ## 9. Run Detection
-After training, see the run/train/weight folder and you will see last.pt and best.pt files, use those file and rename it like here I renamed " lastsmall1000all.pt"  and keep in your working directory name as detectfish.  
-We use the model to detect fish in images or videos:
+After training, see the run/train/weight folder and you will see last.pt and best.pt files, use those file and rename it like here I renamed " lastsmall1000all.pt"  and keep in your working directory name as detectobject.  
+We use the model to detect object in images or videos:
 ```python
 import cv2
 from ultralytics import YOLO
@@ -144,14 +144,14 @@ cv2.destroyAllWindows()
 ## 10. Count
 Congratulations! You've successfully set up and trained a YOLO model to count whatever you want, this program simply suggests you can modify this for any detection.
 Here you can fine tune sort.py file such that you can easily get desirable results. In classes.txt, we 
-define classes name. If you are using multiple classes just include in that and make a change in count_fish.py as well.
+define classes name. If you are using multiple classes just include in that and make a change in count_object.py as well.
 If you are going to count other object then go for it. It will work. Just remember you will need to have pytorch model i.e., .pt file. Thats all.
 Now download all the files in same folder and start counting. Good luck.
 
 
  ## 11. Measure length and Weight
-To measure length and weight of the fish we use $\textcolor{red}{dpk-length}$ approximation as explained in the code more documentations will be provided on request on above youtube channel. 
-This approximation works fine for Barramundi fish for any size becasue of emprical results on large number of fish. This approximation to pull length from detection is only 
+To measure length and weight of the object we use $\textcolor{red}{dpk-length}$ approximation as explained in the code more documentations will be provided on request on above youtube channel. 
+This approximation works for objects of a consistent type and size because of empirical results on a large number of samples. This approximation to pull length from detection is only 
 applicable for detection, if you want to work on OBB detection then you can direclty impliment length and width as in detection no need to use " $\textcolor{red}{dpk-length}$ $\textcolor{red}{ transformation"}$. However,
 simple detection is faster for real time detection and counting as compare to OBB with small computational power.
 
@@ -175,7 +175,7 @@ model.export( format="engine", task="detect", half="True) #this creates last.eng
 tensorrt_model = YOLO("last.engine")
 ```
 You will get optimized file "last.engine" which is almost equivalent to the .pt file in term of performance and it is 2 times faster than yolo.pt model.
-Now I have uplodaded Mainfishcount.py file as well which is robust and more powerful interms of fish counting. You can change your last1.engine file according to output of your optimized or still you can use bestYm500.pt model as well. Choice is yours. For this if you use https://youtu.be/pXhthoGPRkg link it will work better because of high FPS. 
+Now I have uplodaded Mainobjectcount.py file as well which is robust and more powerful interms of object counting. You can change your last1.engine file according to output of your optimized or still you can use bestYm500.pt model as well. Choice is yours. For this if you use https://youtu.be/pXhthoGPRkg link it will work better because of high FPS. 
 ## References
 
 ```bash
@@ -206,4 +206,3 @@ date-released: '2023-01-10'
 
 
 For improvements or contributions, feel free to submit a pull request!
-
