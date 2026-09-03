@@ -17,7 +17,8 @@ object_size = input("Size of object (in cm): ")
 class ObjectCounter:
     def __init__(self, model_path, video_path, output_path, output_path1):
         self.model = YOLO(model_path)
-        self.class_list = list(self.model.names.values())
+        names = self.model.names
+        self.class_list = list(names.values()) if isinstance(names, dict) else list(names)
         self.tracker = Sort(max_age=20,min_hits=2,iou_threshold=0.1)  # Initialize SORT tracker with max age for quick forgetting
         '''IF we work on the max_age, higher number is better to sort and remember the tracking ID and number for longer period
            of time as it works in FPS rather than seconds, so max_age =10 means that it will forget any object if they missed out

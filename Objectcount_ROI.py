@@ -17,7 +17,8 @@ object_size = input("Size of object (in cm): ")
 class ObjectCounter:
     def __init__(self, model_path, video_path, output_path, output_path1):
         self.model = YOLO(model_path)
-        self.class_list = list(self.model.names.values())
+        names = self.model.names
+        self.class_list = list(names.values()) if isinstance(names, dict) else list(names)
         self.tracker = Sort(max_age=1, min_hits=1, iou_threshold=0.1)  # Initialize SORT tracker with max age for quick forgetting, YOU CAN FINE TUNE THIS SECTION TO WORK OUT
         self.video_path = video_path
         self.output_path = output_path
