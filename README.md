@@ -1,6 +1,6 @@
-# FishCount
+# Object detection and Count
 
-FishCount uses the YOLO model to count fish in images or videos.
+This program uses the YOLO model to count any object which is trained on your dataset in images or videos.
 
 ## 1. Install Python
 Ensure Python is installed on your computer. You can work in a local environment such as IDLE, Visual Studio, PyCharm, or use Google Colab or Jupyter Notebook. This guide focuses on a local setup, but instructions for Colab are also provided.
