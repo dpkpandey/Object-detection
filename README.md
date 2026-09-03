@@ -142,10 +142,7 @@ cv2.destroyAllWindows()
 ```
 
 ## 10. Count
-Congratulations! You've successfully set up and trained a YOLO model to count fish.
-Now, We need to count them, 
-I have attached all the necessary documents except footage for footage you can download from "[mydataset](https://www.youtube.com/watch?v=Z0DoiaABzoY)"
-and see the result in "[myresult](https://www.youtube.com/watch?v=KS21LWcn9bs)" in this link. To download add ss like "https://www.ssyoutube.com/watch?v=Z0DoiaABzoY"
+Congratulations! You've successfully set up and trained a YOLO model to count whatever you want, this program simply suggests you can modify this for any detection.
 Here you can fine tune sort.py file such that you can easily get desirable results. In classes.txt, we 
 define classes name. If you are using multiple classes just include in that and make a change in count_fish.py as well.
 If you are going to count other object then go for it. It will work. Just remember you will need to have pytorch model i.e., .pt file. Thats all.
@@ -206,9 +203,6 @@ license: AGPL-3.0
 version: 8.0.0
 date-released: '2023-01-10'
 ```
-
-
-##### This project is done in Humpty Doo Barramundi as a Research and Development project, thanks to all helping hands 
 
 
 For improvements or contributions, feel free to submit a pull request!
