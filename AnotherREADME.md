@@ -1,7 +1,7 @@
  # Any Object Counting 
  If you want to dig little bit more in the theory behind this algorithms and how it is really working. In this section I am bit trying to explain, there could be some misleading
  so, anyone can correct if they find it wrong. YOU ARE MOST WELCOME TO CONTRIBUTE.
- As we are using, YOLO model to first detect and count the fish. In future we will do more than that. 
+ As we are using, YOLO model to first detect and count the object. In future we will do more than that. 
  I assume you have gone through $\textbf{\textcolor{purple}{README.md}}$ file. So, that I do not have to explain steps here.
 
 ## What is Machine Learning ?
@@ -172,7 +172,7 @@ YOLO is a real-time object detection algorithm that processes an image in a sing
 Would you like help implementing YOLO for a specific task? 🚀
 
  ## HOW different tracks are important and how to use them?
- ## How Length and Weight of fish are calculated?
+ ## How Length and Weight of object are calculated?
  ### How we save the file in computer especially export in excel file 
 
 
