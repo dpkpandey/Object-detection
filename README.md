@@ -175,7 +175,7 @@ model.export( format="engine", task="detect", half="True) #this creates last.eng
 tensorrt_model = YOLO("last.engine")
 ```
 You will get optimized file "last.engine" which is almost equivalent to the .pt file in term of performance and it is 2 times faster than yolo.pt model.
-Now I have uplodaded MainObjectcount.py file as well which is robust and more powerful interms of Object counting. You can change your last1.engine file according to output of your optimized or still you can use bestYm500.pt model as well. Choice is yours. For this if you use https://youtu.be/pXhthoGPRkg link it will work better because of high FPS. 
+Now I have uplodaded MainObjectcount.py file as well which is robust and more powerful interms of Object counting. You can change your last1.engine file according to output of your optimized or still you can use bestYm500.pt model as well. Choice is yours. For this if you use https://youtu.be/pXhthoGPRkg_ link it will work better because of high FPS. 
 ## References
 
 ```bash
