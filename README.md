@@ -98,7 +98,7 @@ names:
 
  
 ```yaml
-path: C:\Users\YourComputer\Desktop\algaedetect  #This is the path of your current directory
+path: C:\Users\YourComputer\Desktop\randomdetect  #This is the path of your current directory
 train: images
 val: images
 nc: 5
