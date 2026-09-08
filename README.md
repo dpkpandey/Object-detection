@@ -91,18 +91,18 @@ path: C:\Users\YourComputer\Desktop\fishdetect  #This is path of your current di
 train: images
 val: images
 names:
-  0: fish
+  0: #bottle
 ```
  
-### For multiple classes (e.g., algae detection):  $\textcolor{red}{You}$ $\textcolor{red}{can}$ $\textcolor{red}{skip}$ $\textcolor{red}{this}$ $\textcolor{red}{one}$  $\textcolor{red}{here,}$ $\textcolor{red}{this}$ $\textcolor{red}{is}$ $\textcolor{red}{just}$ $\textcolor{red}{an}$  $\textcolor{red}{example}$ $\textcolor{red}{of}$ $\textcolor{red}{how}$ $\textcolor{red}{to}$ $\textcolor{red}{use}$  $\textcolor{red}{multiple}$ $\textcolor{red}{classes}$
+### For multiple classes (e.g., random detection):  $\textcolor{red}{You}$ $\textcolor{red}{can}$ $\textcolor{red}{skip}$ $\textcolor{red}{this}$ $\textcolor{red}{one}$  $\textcolor{red}{here,}$ $\textcolor{red}{this}$ $\textcolor{red}{is}$ $\textcolor{red}{just}$ $\textcolor{red}{an}$  $\textcolor{red}{example}$ $\textcolor{red}{of}$ $\textcolor{red}{how}$ $\textcolor{red}{to}$ $\textcolor{red}{use}$  $\textcolor{red}{multiple}$ $\textcolor{red}{classes}$
 
  
 ```yaml
 path: C:\Users\YourComputer\Desktop\algaedetect  #This is the path of your current directory
 train: images
 val: images
-nc: 15
-names: ['Ceratium', 'Chaetoceros', 'Cyclotella', 'Cyanobacteria', 'Euglenoid Eutreptiella', 'Gymnodinium', 'Microcystis', 'New', 'Oocystis', 'Oocytis', 'Oscillatoria', 'Pleurosigma sp.', 'Pseudo-nitzschia', 'Pseudo-nitzschia sp.', 'macro-algae']
+nc: 5
+names: ['bottle', 'car','pipes','some dumb', 'rocket']
 ```
 
 ## 8. Train the Model
